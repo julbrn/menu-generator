@@ -12,11 +12,11 @@
 }
 
 .heading {
-  text-transform: uppercase;
   font-size: 40px;
   margin: 52px 0 32px;
   z-index: 1;
   text-align: center;
+  color: #8c7979;
 }
 
 @media (max-width: 800px) {
