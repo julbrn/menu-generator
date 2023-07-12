@@ -13,7 +13,7 @@ form {
     overflow: hidden;
     display: flex;
     flex-wrap: wrap;
-    max-width: min(90%, 500px);
+    max-width: min(90%, 520px);
     border-radius: .7rem;
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
 }
@@ -23,7 +23,7 @@ form input {
     width: 50%;
     padding: 10px;
     line-height: 1;
-    font-size: 1rem;
+    font-size: .8rem;
     border: 0;
     border-bottom: 1px solid #ccc;
     border-right: 1px solid #ccc;
@@ -36,14 +36,15 @@ form input:focus {
     background: #f3e7e9;
 }
 
-form input:last-of-type {
+form input:nth-of-type(3),
+input:nth-of-type(4) {
     width: 100%;
 }
 
 form button {
     width: 100%;
     border: 0;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 button,
@@ -53,7 +54,7 @@ input[type=submit] {
     border: none;
     background: #c3929a;
     color: #fff;
-    font-size: 14px;
+    font-size: 1rem;
     cursor: pointer;
     transition: all .4s ease-in-out;
 }
@@ -65,46 +66,60 @@ button:hover {
 /* Dish card*/
 .dish {
     background: white;
-    border: 1px solid #ededed;
+    border-radius: .7rem;
     box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.09);
-    position: relative;
     display: flex;
-    flex-direction: column;
-    padding: 12px;
-    margin-bottom: 22px;
+    padding: .7rem;
+    gap: 1rem;
+    max-width: min(90%, 520px);
+    margin: 0 auto;
 }
 
+
 .dish img {
-    width: 252px;
-    height: 200px;
-    object-fit: contain;
+    width: 16rem;
+    height: 10rem;
+    object-fit: cover;
+    border-radius: .4rem;
+}
+
+.dish__info {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+}
+
+.dish__heading {
+    display: flex;
+    flex-wrap: no-wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
 }
 
 .dish span {
-    background: #ff0000;
-    color: white;
-    font-weight: 600;
-    padding: 5px;
-    line-height: 1;
-    font-size: 27px;
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    right: 0;
+    color: #716464;
+    font-weight: 400;
+    font-size: .7rem;
+    font-style: italic;
 }
 
-.dish .dish-controls {
-    position: absolute;
-    top: 5px;
-    left: 5px;
+.dish__controls {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
 }
 
-.gish svg {
-    width: 22px;
-    height: 22px;
+.dish svg {
+    width: 1.2rem;
+    height: 1.2rem;
     cursor: pointer;
-    margin-right: 10px;
-    color: #392e4a;
+    color: #8c7979;
+    transition: all .4s ease-in-out;
+}
+
+.dish svg:hover {
+    color: #c3929a
 }
 
 .dish a {
@@ -113,15 +128,41 @@ button:hover {
 }
 
 .dish h2 {
-    margin: 0 40px;
-    text-align: center;
-    margin-top: -1rem;
-    background: red;
-    display: inline;
-    line-height: 1.3;
-    font-size: 27px;
-    color: white;
-    padding: 0 7px;
+    font-weight: 600;
+    font-size: .9rem;
+    color: #525252;
+    margin: 0;
+    padding: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dish p {
+    font-size: .7rem;
+    margin: 0;
+    padding: 0;
+    margin: 1rem 0;
+    overflow: hidden;
+    hyphens: auto;
+}
+
+
+@media (max-width: 500px) {
+    .dish {
+        flex-direction: column;
+    }
+
+    .dish img {
+        width: 100%;
+        height: 12rem;
+    }
+
+    .dish__info {
+        width: 100%
+    }
 }
 
 /*Edit form*/
