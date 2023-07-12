@@ -1,12 +1,22 @@
 import React from "react";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import Dish from "../models/Dish";
+import EditDishForm from "./EditDishForm";
 
 interface DishCardProp {
   dish: Dish;
+  updateDish: (newDish: Dish) => void;
+  deleteDish: (id: number) => void;
 }
 
-const DishCard: React.FC<DishCardProp> = ({ dish }) => {
+const DishCard: React.FC<DishCardProp> = ({ dish, updateDish, deleteDish }) => {
+  const [edit, setEdit] = React.useState<boolean>(false);
+  const hangleToggleEdit = () => {
+    setEdit(!edit);
+  };
+  const handleDelete = () => {
+    deleteDish(dish.id);
+  };
   return (
     <div className="dish">
       <img src={dish.image} alt={dish.title} />
@@ -17,10 +27,17 @@ const DishCard: React.FC<DishCardProp> = ({ dish }) => {
         </div>
         <p className="dish__description">{dish.description}</p>
         <div className="dish__controls">
-          <AiFillEdit />
-          <AiFillDelete />
+          <AiFillEdit onClick={hangleToggleEdit} />
+          <AiFillDelete onClick={handleDelete} />
         </div>
       </div>
+      {edit ? (
+        <EditDishForm
+          data={dish}
+          updateDish={updateDish}
+          hangleToggleEdit={hangleToggleEdit}
+        />
+      ) : null}
     </div>
   );
 };

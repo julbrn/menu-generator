@@ -11,6 +11,17 @@ const App: React.FC = () => {
     setDishesList([...dishesList, newDish]);
   };
 
+  const deleteDish = (id: number) => {
+    const newDishesList = dishesList.filter((dish) => dish.id !== id);
+    setDishesList(newDishesList);
+  };
+
+  const updateDish = (newDish: Dish) => {
+    setDishesList(
+      dishesList.map((dish) => (dish.id === newDish.id ? newDish : dish))
+    );
+  };
+
   console.log(dishesList);
 
   return (
@@ -18,7 +29,11 @@ const App: React.FC = () => {
       <div className="wrap">
         <span className="heading">Menu Generator</span>
         <AddDishForm addDish={addDish} />
-        <DisplayDishes dishesList={dishesList} />
+        <DisplayDishes
+          dishesList={dishesList}
+          updateDish={updateDish}
+          deleteDish={deleteDish}
+        />
       </div>
     </div>
   );
