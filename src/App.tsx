@@ -3,9 +3,10 @@ import "./App.css";
 import AddDishForm from "./components/AddDishForm";
 import DisplayDishes from "./components/DisplayDishes";
 import Dish from "./models/Dish";
+import demoDishes from "./demoDishes";
 
 const App: React.FC = () => {
-  const [dishesList, setDishesList] = React.useState<Dish[]>([]);
+  const [dishesList, setDishesList] = React.useState<Dish[]>(demoDishes);
 
   const addDish = (newDish: Dish) => {
     setDishesList([...dishesList, newDish]);
