@@ -9,7 +9,7 @@ const App: React.FC = () => {
   const [dishesList, setDishesList] = React.useState<Dish[]>(demoDishes);
 
   const addDish = (newDish: Dish) => {
-    setDishesList([...dishesList, newDish]);
+    setDishesList([newDish, ...dishesList]);
   };
 
   const deleteDish = (id: number) => {
@@ -22,8 +22,6 @@ const App: React.FC = () => {
       dishesList.map((dish) => (dish.id === newDish.id ? newDish : dish))
     );
   };
-
-  console.log(dishesList);
 
   return (
     <div className="App">

@@ -23,7 +23,7 @@ const EditDishForm: React.FC<EditDishFormProp> = ({
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { title, price, image, description } = editDish;
-    if (title && price && image) {
+    if (title && price && image && description) {
       updateDish(editDish);
       hangleToggleEdit();
     }

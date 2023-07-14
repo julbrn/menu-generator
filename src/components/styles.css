@@ -10,17 +10,44 @@ body {
 form {
     border: none;
     overflow: hidden;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+        "title price"
+        "link link"
+        "description description"
+        "button button";
     width: min(90%, 30rem);
     border-radius: .7rem;
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
 }
 
+.input__wrapper {
+    position: relative
+}
+
+.input__wrapper_description {
+    grid-area: description;
+}
+
+.input__wrapper_price {
+    grid-area: price;
+}
+
+.input__wrapper_link {
+    grid-area: link;
+}
+
+.input__wrapper_title {
+    grid-area: title;
+}
+
+
 form input {
+    width: 100%;
     color: #302424;
-    width: 50%;
-    padding: 10px;
+    padding: .6rem;
     line-height: 1;
     font-size: .8rem;
     border: 0;
@@ -30,20 +57,29 @@ form input {
     background: #fff;
 }
 
+.input__error {
+    position: absolute;
+    font-size: .5rem;
+    bottom: 2px;
+    left: .6rem;
+    color: rgb(228, 51, 89);
+}
+
 form input:focus {
     outline: 0;
     background: #f3e7e9;
 }
 
-form input:nth-of-type(3),
-input:nth-of-type(4) {
-    width: 100%;
-}
 
 form button {
+    grid-area: button;
     width: 100%;
     border: 0;
     font-size: 1rem;
+}
+
+button:disabled {
+    background-color: #c9bebe;
 }
 
 button,
@@ -58,7 +94,7 @@ input[type=submit] {
     transition: all .4s ease-in-out;
 }
 
-button:hover {
+button:not(:disabled):hover {
     background: #9b6a77;
 }
 

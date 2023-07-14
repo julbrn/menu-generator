@@ -1,7 +1,6 @@
 import React from "react";
 import Dish from "../models/Dish";
 import DishCard from "./DishCard";
-import demoDishes from "../demoDishes";
 
 interface DisplayDishesProps {
   dishesList: Dish[];
