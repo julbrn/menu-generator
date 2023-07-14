@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Dish from "../models/Dish";
 import DishCard from "./DishCard";
+import Pagination from "./Pagination";
 
 interface DisplayDishesProps {
   dishesList: Dish[];
@@ -13,19 +14,38 @@ const DisplayDishes: React.FC<DisplayDishesProps> = ({
   updateDish,
   deleteDish,
 }) => {
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  console.log(currentPage);
+  const dishesPerPage: number = 2;
+  const lastDishIndex = currentPage * dishesPerPage;
+  const firstDishIndex = lastDishIndex - dishesPerPage;
+  const currentDishes = dishesList.slice(firstDishIndex, lastDishIndex);
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  const goToNextPage = () => setCurrentPage((prev) => prev + 1);
+  const goToPrevPage = () => setCurrentPage((prev) => prev - 1);
   return (
-    <div className="container">
-      {dishesList.map((dish) => {
-        return (
-          <DishCard
-            key={dish.id}
-            dish={dish}
-            updateDish={updateDish}
-            deleteDish={deleteDish}
-          />
-        );
-      })}
-    </div>
+    <>
+      <div className="container">
+        {currentDishes.map((dish) => {
+          return (
+            <DishCard
+              key={dish.id}
+              dish={dish}
+              updateDish={updateDish}
+              deleteDish={deleteDish}
+            />
+          );
+        })}
+      </div>
+      <Pagination
+        dishesPerPage={dishesPerPage}
+        totalDishes={dishesList.length}
+        currentPage={currentPage}
+        paginate={paginate}
+        goToNextPage={goToNextPage}
+        goToPrevPage={goToPrevPage}
+      ></Pagination>
+    </>
   );
 };
 

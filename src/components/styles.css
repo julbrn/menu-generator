@@ -215,3 +215,58 @@ button:not(:disabled):hover {
 .edit-form input {
     width: 100%;
 }
+
+/*Pagination*/
+.pagination {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 0 1rem;
+}
+
+.pagination__numbers {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: .1rem
+}
+
+.pagination__square {
+    border: 1px solid #8c7979;
+    height: 1.4rem;
+    width: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: #f3e7e9;
+    border-radius: 50%;
+    transition: all .3s ease-in-out
+}
+
+.pagination__square_active {
+    background-color: #fff;
+}
+
+.pagination__square:hover {
+    background-color: #fff;
+}
+
+.pagination__number {
+    font-size: .8rem;
+}
+
+.pagination__buttons {
+    display: flex;
+    justify-content: center;
+    gap: .4rem;
+    margin-top: .8rem;
+}
+
+.pagination__button {
+    border-radius: .3rem;
+    padding: .4rem .6rem;
+    font-size: .6rem;
+}

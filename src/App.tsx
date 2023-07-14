@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import AddDishForm from "./components/AddDishForm";
 import DisplayDishes from "./components/DisplayDishes";
@@ -6,11 +6,10 @@ import Dish from "./models/Dish";
 import demoDishes from "./demoDishes";
 
 const App: React.FC = () => {
-  const [dishesList, setDishesList] = React.useState<Dish[]>([]);
+  const [dishesList, setDishesList] = useState<Dish[]>([]);
   useEffect(() => {
     let savedDishes = localStorage.getItem("savedDishes");
     if (savedDishes) {
-      console.log(savedDishes);
       setDishesList(JSON.parse(savedDishes));
     } else setDishesList(demoDishes);
   }, []);
