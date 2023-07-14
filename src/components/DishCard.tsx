@@ -23,7 +23,7 @@ const DishCard: React.FC<DishCardProp> = ({ dish, updateDish, deleteDish }) => {
       <div className="dish__info">
         <div className="dish__heading">
           <h2>{dish.title}</h2>
-          <span>{dish.price}&nbsp;₸</span>
+          <span className="dish__price">{dish.price}&nbsp;₸</span>
         </div>
         <p className="dish__description">{dish.description}</p>
         <div className="dish__controls">

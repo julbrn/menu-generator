@@ -1,17 +1,17 @@
-import React from "react";
-const useValidation = (value, validationOptions) => {
-  const [isEmpty, setIsEmpty] = React.useState<boolean>(true);
-  const [minLengthError, setMinLengthError] = React.useState<boolean>(false);
-  const [urlError, setUrlError] = React.useState<boolean>(false);
-  const [inputValid, setInputValid] = React.useState<boolean>(false);
-  React.useEffect(() => {
+import React, { useState, useEffect } from "react";
+export interface ObjType {
+  isEmpty: boolean;
+  isUrl?: boolean;
+  isNumber?: boolean;
+}
+const useValidation = (value: string, validationOptions: ObjType) => {
+  const [isEmpty, setIsEmpty] = useState<boolean>(true);
+  const [urlError, setUrlError] = useState<boolean>(false);
+  const [numberError, setNumberError] = useState<boolean>(false);
+  const [inputValid, setInputValid] = useState<boolean>(false);
+  useEffect(() => {
     for (const validationOption in validationOptions) {
       switch (validationOption) {
-        case "minLength":
-          value.length < validationOptions[validationOption]
-            ? setMinLengthError(true)
-            : setMinLengthError(false);
-          break;
         case "isEmpty":
           value ? setIsEmpty(false) : setIsEmpty(true);
           break;
@@ -21,19 +21,21 @@ const useValidation = (value, validationOptions) => {
             ? setUrlError(false)
             : setUrlError(true);
           break;
+        case "isNumber":
+          isNaN(Number(value)) ? setNumberError(true) : setNumberError(false);
       }
     }
   }, [value]);
 
-  React.useEffect(() => {
-    if (isEmpty || minLengthError || urlError) {
+  useEffect(() => {
+    if (isEmpty || numberError || urlError) {
       setInputValid(false);
     } else {
       setInputValid(true);
     }
-  }, [isEmpty, minLengthError, urlError]);
+  }, [isEmpty, numberError, urlError]);
 
-  return { isEmpty, minLengthError, urlError, inputValid };
+  return { isEmpty, urlError, inputValid, numberError };
 };
 
 export default useValidation;

@@ -1,7 +1,7 @@
 type Dish = {
   id: number;
   title: string;
-  price: number;
+  price: string;
   image: string;
   description: string;
 };

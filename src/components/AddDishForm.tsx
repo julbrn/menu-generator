@@ -8,20 +8,25 @@ interface AddDishFormProp {
 }
 
 const AddDishForm: React.FC<AddDishFormProp> = ({ addDish }) => {
-  const title = useInput("", { isEmpty: true, minLength: 3 });
-  const price = useInput("", { isEmpty: true });
+  const title = useInput("", { isEmpty: true });
+  const price = useInput("", { isEmpty: true, isNumber: true });
   const image = useInput("", { isEmpty: true, isUrl: true });
   const description = useInput("", { isEmpty: true });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     addDish({
       title: title.value,
-      price: Number(price.value),
+      price: price.value,
       image: image.value,
       id: Date.now(),
       description: description.value,
     });
+
+    title.clear();
+    price.clear();
+    description.clear();
+    image.clear();
   };
 
   return (
@@ -33,8 +38,12 @@ const AddDishForm: React.FC<AddDishFormProp> = ({ addDish }) => {
           value={title.value}
           placeholder="Name"
           onChange={(e) => title.onChange(e)}
+          onBlur={(e) => title.onBlur(e)}
           maxLength={100}
         />
+        {title.isDirty && title.isEmpty && (
+          <span className="input__error">Please fill in this field</span>
+        )}
       </div>
       <div className="input__wrapper input__wrapper_price">
         <input
@@ -46,6 +55,12 @@ const AddDishForm: React.FC<AddDishFormProp> = ({ addDish }) => {
           onBlur={(e) => price.onBlur(e)}
           maxLength={5}
         />
+        {price.isDirty && price.isEmpty && (
+          <span className="input__error">Please fill in this field</span>
+        )}
+        {price.isDirty && !price.isEmpty && price.numberError && (
+          <span className="input__error">Only digits are accepted</span>
+        )}
       </div>
       <div className="input__wrapper input__wrapper_link">
         <input
@@ -57,7 +72,7 @@ const AddDishForm: React.FC<AddDishFormProp> = ({ addDish }) => {
           onBlur={(e) => image.onBlur(e)}
         />
         {image.isDirty && image.isEmpty && (
-          <span className="input__error">Field cannot be empty</span>
+          <span className="input__error">Please fill in this field</span>
         )}
         {image.isDirty && !image.isEmpty && image.urlError && (
           <span className="input__error">Wrong link format</span>
@@ -70,8 +85,12 @@ const AddDishForm: React.FC<AddDishFormProp> = ({ addDish }) => {
           value={description.value}
           placeholder="Description"
           onChange={(e) => description.onChange(e)}
+          onBlur={(e) => description.onBlur(e)}
           maxLength={220}
         />
+        {description.isDirty && description.isEmpty && (
+          <span className="input__error">Please fill in this field</span>
+        )}
       </div>
       <button
         disabled={
