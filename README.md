@@ -2,6 +2,8 @@
 
 This project is a practice of using TypeScript with React.
 
+→[DEMO](https://julbrn.github.io/menu-generator/)←
+
 ## Features
 
 - Custom hook for form validation
@@ -16,14 +18,14 @@ This project is a practice of using TypeScript with React.
 
 ## Installation Guide
 
-# Clone the repository
+### Clone the repository
 
 `git clone git@github.com:julbrn/menu-generator.git`
 
-# Install the dependenies
+### Install the dependenies
 
 `npm install`
 
-# Run the application locaaly on port 3000
+### Run the application locaaly on port 3000
 
 `npm start`
