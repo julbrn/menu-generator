@@ -27,8 +27,8 @@ const DishCard: React.FC<DishCardProp> = ({ dish, updateDish, deleteDish }) => {
         </div>
         <p className="dish__description">{dish.description}</p>
         <div className="dish__controls">
-          <AiFillEdit onClick={hangleToggleEdit} />
-          <AiFillDelete onClick={handleDelete} />
+          <AiFillEdit onClick={hangleToggleEdit} className="button-icon" />
+          <AiFillDelete onClick={handleDelete} className="button-icon" />
         </div>
       </div>
       {edit ? (

@@ -15,7 +15,6 @@ const DisplayDishes: React.FC<DisplayDishesProps> = ({
   deleteDish,
 }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
-  console.log(currentPage);
   const dishesPerPage: number = 2;
   const lastDishIndex = currentPage * dishesPerPage;
   const firstDishIndex = lastDishIndex - dishesPerPage;

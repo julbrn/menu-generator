@@ -21,7 +21,6 @@ const EditDishForm: React.FC<EditDishFormProp> = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(title.value);
     updateDish({
       title: title.value,
       price: price.value,

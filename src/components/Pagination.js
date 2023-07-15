@@ -8,7 +8,7 @@ const Pagination = ({ dishesPerPage, totalDishes, currentPage, paginate, goToNex
     return (
         <div className="pagination">
             <ul className="pagination__numbers">
-                {pageNumbers.map(number => (<li onClick={() => paginate(number)} className={`pagination__square ${currentPage === number ? "pagination__square_active" : ""}`} key={number}>
+                {pageNumbers.map(number => (<li onClick={() => paginate(number)} className={`pagination__cell ${currentPage === number ? "pagination__cell_active" : ""}`} key={number}>
                     <a className="pagination__number">{number}</a>
                 </li>)
                 )}
